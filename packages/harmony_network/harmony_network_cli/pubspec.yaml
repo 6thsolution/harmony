@@ -1,5 +1,5 @@
 name: harmony_network_cli
-description: A simple command-line application.
+description: harmony's command line tool to generate a dio based flutter network client from an openapi sepcifications yaml file
 version: 1.0.0
 # homepage: https://www.example.com
 
