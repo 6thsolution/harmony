@@ -5,14 +5,14 @@ import 'dart:isolate';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:build/src/builder/build_step.dart';
-import 'package:harmony_network/harmony_network.dart' as annots;
+import 'package:harmony_network/harmony_network.dart' as annotations;
 import 'package:harmony_network_generator/src/constants.dart';
 import 'package:path/path.dart' as path;
 import 'package:source_gen/source_gen.dart';
 
 import 'type_methods.dart';
 
-class OpenapiGenerator extends GeneratorForAnnotation<annots.Openapi> {
+class OpenapiGenerator extends GeneratorForAnnotation<annotations.HarmonyNetwork> {
   @override
   FutureOr<String> generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) async {
     print('RUNNING HARMONY NETWORK GENERATOR !!!');
@@ -31,7 +31,7 @@ class OpenapiGenerator extends GeneratorForAnnotation<annots.Openapi> {
 
       command = appendTemplateDirCommandArgs(annotation, command, separator);
 
-      var generatorName = annotation.peek('generatorName')?.enumValue<annots.Generator>();
+      var generatorName = annotation.peek('generatorName')?.enumValue<annotations.Generator>();
       var generator = getGeneratorNameFromEnum(generatorName!);
       command = '$command$separator-g$separator$generator';
 
@@ -107,12 +107,12 @@ class OpenapiGenerator extends GeneratorForAnnotation<annots.Openapi> {
       if (exitCode == 0) {
         //run buildrunner to generate files
         switch (generatorName) {
-          case annots.Generator.dart:
+          case annotations.Generator.dart:
             print('OpenapiGenerator :: skipping source gen because generator does not need it ::');
             break;
-          case annots.Generator.dio:
-          case annots.Generator.dioNext:
-          case annots.Generator.jaguar:
+          case annotations.Generator.dio:
+          case annotations.Generator.dioNext:
+          case annotations.Generator.jaguar:
             // case annots.Generator.dioAlt:
             try {
               var runnerOutput = await runSourceGen(annotation, outputDirectory);
@@ -171,26 +171,26 @@ class OpenapiGenerator extends GeneratorForAnnotation<annots.Openapi> {
     return command;
   }
 
-  String getGeneratorNameFromEnum(annots.Generator generator) {
+  String getGeneratorNameFromEnum(annotations.Generator generator) {
     var genName = 'dart';
     switch (generator) {
-      case annots.Generator.dart:
+      case annotations.Generator.dart:
         break;
-      case annots.Generator.dio:
+      case annotations.Generator.dio:
         genName = 'dart-dio';
         break;
-      case annots.Generator.dioNext:
+      case annotations.Generator.dioNext:
         genName = 'dart-dio-next';
         break;
       // case annots.Generator.dioAlt:
       //   genName = 'dart2-api';
       //   break;
-      case annots.Generator.jaguar:
+      case annotations.Generator.jaguar:
         genName = 'dart-jaguar';
         break;
       default:
         throw InvalidGenerationSourceError(
-          'Generator name must be any of ${annots.Generator.values}.',
+          'Generator name must be any of ${annotations.Generator.values}.',
         );
     }
     return genName;
@@ -225,13 +225,13 @@ class OpenapiGenerator extends GeneratorForAnnotation<annots.Openapi> {
   }
 
   Command _getCommandWithWrapper(String command, List<String> arguments, ConstantReader annotation) {
-    final wrapper = annotation.read('additionalProperties').read('wrapper').enumValue<annots.Wrapper>();
+    final wrapper = annotation.read('additionalProperties').read('wrapper').enumValue<annotations.Wrapper>();
     switch (wrapper) {
-      case annots.Wrapper.flutterw:
+      case annotations.Wrapper.flutterw:
         return Command('./flutterw', arguments);
-      case annots.Wrapper.fvm:
+      case annotations.Wrapper.fvm:
         return Command('fvm', [command, ...arguments]);
-      case annots.Wrapper.none:
+      case annotations.Wrapper.none:
       default:
         return Command(command, arguments);
     }

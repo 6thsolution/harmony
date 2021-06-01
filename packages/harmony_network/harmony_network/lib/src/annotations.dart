@@ -1,8 +1,8 @@
 /// Config base class
 /// Your annotated class must extend this config class
-abstract class OpenapiGeneratorConfig {}
+abstract class HarmonyNetworkModule {}
 
-class Openapi {
+class HarmonyNetwork {
   /// Additional properties to pass to the compiler (CSV)
   ///
   /// --additional-properties
@@ -63,7 +63,7 @@ class Openapi {
 
   final Map<String, String>? typeMappings;
 
-  const Openapi(
+  const HarmonyNetwork(
       {this.additionalProperties,
       this.overwriteExistingFiles,
       this.skipSpecValidation = false,
