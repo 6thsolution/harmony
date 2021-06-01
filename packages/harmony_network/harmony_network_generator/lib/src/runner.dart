@@ -15,6 +15,7 @@ import 'type_methods.dart';
 class OpenapiGenerator extends GeneratorForAnnotation<annots.Openapi> {
   @override
   FutureOr<String> generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) async {
+    print('RUNNING HARMONY NETWORK GENERATOR !!!');
     try {
       if (element is! ClassElement) {
         final friendlyName = element.displayName;
