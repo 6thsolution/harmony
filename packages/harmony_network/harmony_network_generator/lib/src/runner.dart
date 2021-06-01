@@ -6,6 +6,7 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:build/src/builder/build_step.dart';
 import 'package:harmony_network/harmony_network.dart' as annots;
+import 'package:harmony_network_generator/src/constants.dart';
 import 'package:path/path.dart' as path;
 import 'package:source_gen/source_gen.dart';
 
@@ -54,9 +55,8 @@ class OpenapiGenerator extends GeneratorForAnnotation<annots.Openapi> {
       command = appendSkipValidateSpecCommandArgs(annotation, command, separator);
 
       print('OpenapiGenerator :: [${command.replaceAll(separator, ' ')}]');
-
-      var binPath = (await Isolate.resolvePackageUri(Uri.parse('package:openapi_generator_cli/openapi-generator.jar')))!
-          .toFilePath(windows: Platform.isWindows);
+      var openApiJarUri = Uri.parse(OPENAPI_JAR_PATH);
+      var binPath = (await Isolate.resolvePackageUri(openApiJarUri))!.toFilePath(windows: Platform.isWindows);
 
       // Include java environment variables in command
       var JAVA_OPTS = Platform.environment['JAVA_OPTS'] ?? '';
