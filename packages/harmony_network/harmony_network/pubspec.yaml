@@ -1,0 +1,13 @@
+name: harmony_network
+description: harmony_network generates a flutter network client from an openapi sepc file. 
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+
+dev_dependencies:
+  test: ^1.16.8
+
