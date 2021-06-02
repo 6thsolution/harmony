@@ -3,7 +3,6 @@ import 'package:harmony_network/harmony_network.dart';
 @HarmonyNetwork(
     additionalProperties: AdditionalProperties(pubName: 'petstore_api', pubAuthor: 'Johnny dep'),
     inputSpecFile: 'lib/openapi-spec.yaml',
-    generatorName: Generator.dioNext,
     outputDirectory: 'api/petstore_api')
 class NetModule extends HarmonyNetworkModule {}
 

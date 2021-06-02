@@ -26,7 +26,7 @@ class HarmonyNetwork {
   /// Generator to use (dart|dart2-api|dart-jaguar|dart-dio)
   ///
   /// -g, --generator-name
-  final Generator generatorName;
+  // final Generator generatorName;
 
   ///  Where to write the generated files (current dir by default)
   ///
@@ -69,7 +69,7 @@ class HarmonyNetwork {
       this.skipSpecValidation = false,
       required this.inputSpecFile,
       this.templateDirectory,
-      required this.generatorName,
+      // required this.generatorName,
       this.outputDirectory,
       this.typeMappings,
       this.reservedWordsMappings,
@@ -155,45 +155,6 @@ class AdditionalProperties {
       this.wrapper = Wrapper.none});
 }
 
-class JaguarProperties extends AdditionalProperties {
-  /// Choose serialization format JSON or PROTO is supported
-  final SerializationFormat? serialization;
-
-  /// Is the null fields should be in the JSON payload
-  final bool? nullableFields;
-
-  const JaguarProperties(
-      {this.serialization,
-      this.nullableFields,
-      bool allowUnicodeIdentifiers = false,
-      bool ensureUniqueParams = true,
-      bool prependFormOrBodyParameters = false,
-      String? pubAuthor,
-      String? pubAuthorEmail,
-      String? pubDescription,
-      String? pubHomepage,
-      String? pubName,
-      String? pubVersion,
-      bool sortModelPropertiesByRequiredFlag = true,
-      bool sortParamsByRequiredFlag = true,
-      bool useEnumExtension = true,
-      String? sourceFolder})
-      : super(
-            allowUnicodeIdentifiers: allowUnicodeIdentifiers,
-            ensureUniqueParams: ensureUniqueParams,
-            prependFormOrBodyParameters: prependFormOrBodyParameters,
-            pubAuthor: pubAuthor,
-            pubAuthorEmail: pubAuthorEmail,
-            pubDescription: pubDescription,
-            pubHomepage: pubHomepage,
-            pubName: pubName,
-            pubVersion: pubVersion,
-            sortModelPropertiesByRequiredFlag: sortModelPropertiesByRequiredFlag,
-            sortParamsByRequiredFlag: sortParamsByRequiredFlag,
-            sourceFolder: sourceFolder,
-            useEnumExtension: useEnumExtension);
-}
-
 class DioProperties extends AdditionalProperties {
   /// Choose serialization format JSON or PROTO is supported
   final DioDateLibrary? dateLibrary;
@@ -244,34 +205,34 @@ enum DioDateLibrary {
 enum SerializationFormat { JSON, PROTO }
 
 /// The name of the generator to use
-enum Generator {
-  /// This generator uses the default http package that comes with dart
-  /// corresponds to dart
-  dart,
+// enum Generator {
+//   /// This generator uses the default http package that comes with dart
+//   /// corresponds to dart
+//   dart,
 
-  /// This generator uses the dio package. Source gen is required after generating code with this generator
-  /// corresponds to dart-dio
-  ///
-  /// A powerful Http client for Dart, which supports Interceptors, Global configuration,
-  /// FormData, Request Cancellation, File downloading, Timeout etc
-  /// https://pub.flutter-io.cn/packages/dio
-  dio,
+//   /// This generator uses the dio package. Source gen is required after generating code with this generator
+//   /// corresponds to dart-dio
+//   ///
+//   /// A powerful Http client for Dart, which supports Interceptors, Global configuration,
+//   /// FormData, Request Cancellation, File downloading, Timeout etc
+//   /// https://pub.flutter-io.cn/packages/dio
+//   dio,
 
-  // /// This uses the generator provided by bluetrainsoftware which internally uses the dio package
-  // ///
-  // /// You can read more about it here https://github.com/dart-ogurets/dart-openapi-maven
-  // dioAlt,
+//   // /// This uses the generator provided by bluetrainsoftware which internally uses the dio package
+//   // ///
+//   // /// You can read more about it here https://github.com/dart-ogurets/dart-openapi-maven
+//   // dioAlt,
 
-  /// This uses the next gen dio generator. This is experimental and use at your own risk. It might be removed or renamed in the future
-  ///
-  /// You can read more about it here https://github.com/OpenAPITools/openapi-generator/pull/8869
-  dioNext,
+//   /// This uses the next gen dio generator. This is experimental and use at your own risk. It might be removed or renamed in the future
+//   ///
+//   /// You can read more about it here https://github.com/OpenAPITools/openapi-generator/pull/8869
+//   dioNext,
 
-  /// This generates code based on the jaguar package Source gen is required
-  /// after generating code with this generator
-  /// corresponds to dart-jaguar
-  ///
-  /// An Http Api generator inspired by Retrofit for Dart
-  jaguar,
-}
+//   /// This generates code based on the jaguar package Source gen is required
+//   /// after generating code with this generator
+//   /// corresponds to dart-jaguar
+//   ///
+//   /// An Http Api generator inspired by Retrofit for Dart
+//   jaguar,
+// }
 enum Wrapper { fvm, flutterw, none }

@@ -31,8 +31,8 @@ class OpenapiGenerator extends GeneratorForAnnotation<annotations.HarmonyNetwork
 
       command = appendTemplateDirCommandArgs(annotation, command, separator);
 
-      var generatorName = annotation.peek('generatorName')?.enumValue<annotations.Generator>();
-      var generator = getGeneratorNameFromEnum(generatorName!);
+      // var generatorName = annotation.peek('generatorName')?.enumValue<annotations.Generator>();
+      var generator = 'dart-dio-next';
       command = '$command$separator-g$separator$generator';
 
       var outputDirectory = _readFieldValueAsString(annotation, 'outputDirectory', '');
@@ -106,22 +106,29 @@ class OpenapiGenerator extends GeneratorForAnnotation<annotations.HarmonyNetwork
 
       if (exitCode == 0) {
         //run buildrunner to generate files
-        switch (generatorName) {
-          case annotations.Generator.dart:
-            print('OpenapiGenerator :: skipping source gen because generator does not need it ::');
-            break;
-          case annotations.Generator.dio:
-          case annotations.Generator.dioNext:
-          case annotations.Generator.jaguar:
-            // case annots.Generator.dioAlt:
-            try {
-              var runnerOutput = await runSourceGen(annotation, outputDirectory);
-              print('OpenapiGenerator :: build runner exited with code ${runnerOutput.exitCode} ::');
-            } catch (e) {
-              print(e);
-              print('OpenapiGenerator :: could not complete source gen ::');
-            }
-            break;
+        // switch (generatorName) {
+        //   case annotations.Generator.dart:
+        //     print('OpenapiGenerator :: skipping source gen because generator does not need it ::');
+        //     break;
+        //   case annotations.Generator.dio:
+        //   case annotations.Generator.dioNext:
+        //   case annotations.Generator.jaguar:
+        //     // case annots.Generator.dioAlt:
+        //     try {
+        //       var runnerOutput = await runSourceGen(annotation, outputDirectory);
+        //       print('OpenapiGenerator :: build runner exited with code ${runnerOutput.exitCode} ::');
+        //     } catch (e) {
+        //       print(e);
+        //       print('OpenapiGenerator :: could not complete source gen ::');
+        //     }
+        //     break;
+        // }
+        try {
+          var runnerOutput = await runSourceGen(annotation, outputDirectory);
+          print('OpenapiGenerator :: build runner exited with code ${runnerOutput.exitCode} ::');
+        } catch (e) {
+          print(e);
+          print('OpenapiGenerator :: could not complete source gen ::');
         }
       }
     } catch (e) {
@@ -169,31 +176,6 @@ class OpenapiGenerator extends GeneratorForAnnotation<annotations.HarmonyNetwork
       command = '$command$separator--reserved-words-mappings=${getMapAsString(reservedWordsMappingsMap)}';
     }
     return command;
-  }
-
-  String getGeneratorNameFromEnum(annotations.Generator generator) {
-    var genName = 'dart';
-    switch (generator) {
-      case annotations.Generator.dart:
-        break;
-      case annotations.Generator.dio:
-        genName = 'dart-dio';
-        break;
-      case annotations.Generator.dioNext:
-        genName = 'dart-dio-next';
-        break;
-      // case annots.Generator.dioAlt:
-      //   genName = 'dart2-api';
-      //   break;
-      case annotations.Generator.jaguar:
-        genName = 'dart-jaguar';
-        break;
-      default:
-        throw InvalidGenerationSourceError(
-          'Generator name must be any of ${annotations.Generator.values}.',
-        );
-    }
-    return genName;
   }
 
   String appendTemplateDirCommandArgs(ConstantReader annotation, String command, String separator) {
