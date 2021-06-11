@@ -1,0 +1,31 @@
+name: example
+description: an example for harmony_network_cli
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  harmony_network_cli:
+    path: ../  
+
+
+harmony_network:
+  openapi_file_path: openapi_files/openapi-spec.yaml
+  output_path: modules/petsotre_api
+
+
+flutter:
+
+  uses-material-design: true
