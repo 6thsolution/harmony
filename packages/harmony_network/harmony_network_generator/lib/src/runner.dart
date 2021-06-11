@@ -78,6 +78,9 @@ class OpenapiGenerator extends GeneratorForAnnotation<annotations.HarmonyNetwork
       print('Executing command [${command.replaceAll(separator, ' ')}]');
 
       var exitCode = 0;
+      print('-----------====================');
+      print(arguments);
+      print('-----------====================');
       var pr = await Process.run('java', arguments);
 
       print(pr.stderr);

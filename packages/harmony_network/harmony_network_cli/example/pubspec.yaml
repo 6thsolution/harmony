@@ -24,6 +24,7 @@ dev_dependencies:
 harmony_network:
   openapi_file_path: openapi_files/openapi-spec.yaml
   output_path: modules/petsotre_api
+  module_name: petapi
 
 
 flutter:

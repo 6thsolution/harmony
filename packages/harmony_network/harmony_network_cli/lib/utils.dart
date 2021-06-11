@@ -25,3 +25,10 @@ Map<String, dynamic> loadYamlFileConfig(String path) {
 
   return config;
 }
+
+void logToConsole(msg) {
+  var separator = '------------------------------------H-N-C-------------------------------------';
+  print(separator);
+  print(msg);
+  print(separator);
+}
