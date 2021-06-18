@@ -12,7 +12,8 @@ Map<String, dynamic> loadYamlFileConfig(String path) {
 
   if (!(yamlMap['harmony_network'] is Map)) {
     stderr.writeln(NoConfigFoundException(
-      'Check that your pubspec.yaml file has a `harmony_network` section',
+      'Check that you are in root project of your flutter app '
+      'and make sure your pubspec.yaml file has a `harmony_network` section',
     ));
     exit(1);
   }
@@ -27,7 +28,8 @@ Map<String, dynamic> loadYamlFileConfig(String path) {
 }
 
 void logToConsole(msg) {
-  var separator = '------------------------------------H-N-C-------------------------------------';
+  var separator =
+      '------------------------------------H-N-C-------------------------------------';
   print(separator);
   print(msg);
   print(separator);

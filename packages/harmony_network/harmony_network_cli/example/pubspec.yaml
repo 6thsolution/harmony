@@ -1,6 +1,6 @@
 name: example
 description: an example for harmony_network_cli
-
+publish_to: none
 
 version: 1.0.0+1
 
@@ -13,6 +13,8 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
+  openapi: 
+    path: modules/kofitness_api
 
 dev_dependencies:
   flutter_test:
@@ -22,9 +24,9 @@ dev_dependencies:
 
 
 harmony_network:
-  openapi_file_path: openapi_files/openapi-spec.yaml
-  output_path: modules/petsotre_api
-  module_name: petapi
+  openapi_file_path: openapi_files/swagger.yaml
+  output_path: modules/kofitness_api
+  module_name: kofitness_api
 
 
 flutter:
