@@ -24,9 +24,10 @@ dev_dependencies:
 
 
 harmony_network:
-  openapi_file_path: openapi_files/swagger.yaml
-  output_path: modules/kofitness_api
-  module_name: kofitness_api
+  openapi_file_path: openapi_files/quranapi.yaml
+  output_path: modules/quranapi
+  module_name: quranapi
+  skip_validation: true
 
 
 flutter:

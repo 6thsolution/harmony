@@ -18,6 +18,10 @@ void main(List<String> arguments) async {
   var config = loadYamlFileConfig('pubspec.yaml');
   var inputFilePath = config['openapi_file_path'];
   var outputPath = config['output_path'];
+  var skipValidation = false;
+  if (config.containsKey('skip_validation')) {
+    skipValidation = config['skip_validation'];
+  }
 
   //making sure input path contains a file and exists
   var inputFile = File(inputFilePath);
@@ -35,12 +39,8 @@ void main(List<String> arguments) async {
   // 1- generate module dart code in output directory
   // 2- run `pub get` in the generated module
   // 3- run source generation in generated module
-  var exitCode = await generateModule(
-    inputFilePath,
-    outputPath,
-    useSnapshotJar: useSnapshotJar,
-    useVersion6Jar: useVersion6Jar,
-  );
+  var exitCode = await generateModule(inputFilePath, outputPath,
+      useSnapshotJar: useSnapshotJar, useVersion6Jar: useVersion6Jar, skipValidation: skipValidation);
   if (exitCode == 0) {
     exitCode = await runPubGet(directory: outputPath);
   }
@@ -74,6 +74,7 @@ Future<int> generateModule(
   String outputDir, {
   bool useSnapshotJar = false,
   bool useVersion6Jar = false,
+  bool skipValidation = false,
 }) async {
   exitCode = 0; // presume success
   var openApiJarUri = Uri.parse(OPENAPI_STABLE_JAR_PATH);
@@ -82,11 +83,23 @@ Future<int> generateModule(
   } else if (useVersion6Jar) {
     openApiJarUri = Uri.parse(OPENAPI_V6_JAR_PATH);
   }
+  if (skipValidation) {
+    logToConsole('skipping spec file validation');
+  }
   logToConsole('using openapi generator jar file from ${basename(openApiJarUri.path)}');
   var binPath = (await Isolate.resolvePackageUri(openApiJarUri))!.toFilePath(windows: Platform.isWindows);
   var JAVA_OPTS = Platform.environment['JAVA_OPTS'] ?? '';
 
-  var args = <String>['generate', '-i', inputFilePath, '-g', 'dart-dio-next', '-o', outputDir];
+  var args = <String>[
+    'generate',
+    '-i',
+    inputFilePath,
+    '-g',
+    'dart-dio-next',
+    '-o',
+    outputDir,
+    if (skipValidation) '--skip-validate-spec',
+  ];
 
   var commands = [
     '-jar',
@@ -97,12 +110,11 @@ Future<int> generateModule(
   if (JAVA_OPTS.isNotEmpty) {
     commands.insert(0, JAVA_OPTS);
   }
-  await Process.run('java', commands).then((ProcessResult pr) {
-    logToConsole(pr.exitCode);
-    logToConsole(pr.stdout);
-    logToConsole(pr.stderr);
-  });
-  return exitCode;
+  var pr = await Process.run('java', commands);
+  logToConsole(pr.exitCode);
+  logToConsole(pr.stdout);
+  logToConsole(pr.stderr);
+  return pr.exitCode;
 }
 
 /// starts a new dart process and runs `flutter pub get` command in give [directory]
