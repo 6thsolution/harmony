@@ -7,6 +7,8 @@ import 'package:harmony_network/exceptions.dart';
 import 'package:harmony_network/utils.dart';
 import 'package:path/path.dart';
 
+//example openapi cli command
+//generate -i files/openapi-spec.yaml -g dart -o api/petstore_api --additional-properties=pubAuthor=Johnny dep,pubName=petstore_api
 void main(List<String> arguments) async {
   //fetching arguments from command line
   var useSnapshotJar = arguments.contains('--use-snapshot-jar') || arguments.contains('-s');
@@ -14,13 +16,22 @@ void main(List<String> arguments) async {
   if (useVersion6Jar && useSnapshotJar) {
     throw InvalidConfigException('ERROR: multiple versions for openapi-generator defined');
   }
-  //fetching arguments from pybspec.yaml config file
+  //fetching arguments from configuration inside pybspec.yaml
   var config = loadYamlFileConfig('pubspec.yaml');
   var inputFilePath = config['openapi_file_path'];
   var outputPath = config['output_path'];
+  //fetching optional arguments from configuration inside pubspec.yaml
   var skipValidation = false;
   if (config.containsKey('skip_validation')) {
     skipValidation = config['skip_validation'];
+  }
+  String? moduleName;
+  if (config.containsKey('module_name')) {
+    moduleName = config['module_name'];
+  }
+  String? authorName;
+  if (config.containsKey('author_name')) {
+    authorName = config['author_name'];
   }
 
   //making sure input path contains a file and exists
@@ -39,8 +50,15 @@ void main(List<String> arguments) async {
   // 1- generate module dart code in output directory
   // 2- run `pub get` in the generated module
   // 3- run source generation in generated module
-  var exitCode = await generateModule(inputFilePath, outputPath,
-      useSnapshotJar: useSnapshotJar, useVersion6Jar: useVersion6Jar, skipValidation: skipValidation);
+  var exitCode = await generateModule(
+    inputFilePath,
+    outputPath,
+    useSnapshotJar: useSnapshotJar,
+    useVersion6Jar: useVersion6Jar,
+    skipValidation: skipValidation,
+    moduleName: moduleName,
+    authorName: authorName,
+  );
   if (exitCode == 0) {
     exitCode = await runPubGet(directory: outputPath);
   }
@@ -75,6 +93,8 @@ Future<int> generateModule(
   bool useSnapshotJar = false,
   bool useVersion6Jar = false,
   bool skipValidation = false,
+  String? moduleName = 'network',
+  String? authorName = 'six solution technologies',
 }) async {
   exitCode = 0; // presume success
   var openApiJarUri = Uri.parse(OPENAPI_STABLE_JAR_PATH);
@@ -90,6 +110,8 @@ Future<int> generateModule(
   var binPath = (await Isolate.resolvePackageUri(openApiJarUri))!.toFilePath(windows: Platform.isWindows);
   var JAVA_OPTS = Platform.environment['JAVA_OPTS'] ?? '';
 
+  var additionalProperties = '--additional-properties=pubAuthor=$authorName,pubName=$moduleName';
+
   var args = <String>[
     'generate',
     '-i',
@@ -99,6 +121,7 @@ Future<int> generateModule(
     '-o',
     outputDir,
     if (skipValidation) '--skip-validate-spec',
+    additionalProperties
   ];
 
   var commands = [
