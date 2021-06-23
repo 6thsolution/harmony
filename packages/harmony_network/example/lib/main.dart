@@ -1,6 +1,5 @@
 import 'package:example/ext.dart';
 import 'package:flutter/material.dart';
-import 'package:openapi/openapi.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,10 +32,10 @@ class HomePage extends StatelessWidget {
               child: Text('send request'),
               onPressed: () async {
                 //send request
-                var api = Openapi();
-                var response = await api.getMyProgramControllerApi().getmyProgramsUsingGET().sealed();
-                print(response.data);
-                print(response.exception);
+                // var api = Openapi();
+                // var response = await api.getMyProgramControllerApi().getmyProgramsUsingGET().sealed();
+                // print(response.data);
+                // print(response.exception);
               },
             ),
           ],

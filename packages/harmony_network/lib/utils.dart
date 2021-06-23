@@ -28,9 +28,5 @@ Map<String, dynamic> loadYamlFileConfig(String path) {
 }
 
 void logToConsole(msg) {
-  var separator =
-      '------------------------------------H-N-C-------------------------------------';
-  print(separator);
-  print(msg);
-  print(separator);
+  print('🍀 HARMONY_NETOWRK : $msg');
 }
