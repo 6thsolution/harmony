@@ -7,7 +7,7 @@ void main() {
       late LogId logId;
 
       setUp(() {
-        logId = LogId.by(() => 'hello');
+        logId = LogId.custom(() => 'hello');
       });
 
       test('generate', () {

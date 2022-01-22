@@ -2,7 +2,7 @@ import 'package:harmony_log/harmony_log.dart';
 
 void main() {
   final log1 = Log(
-    id: LogId(),
+    id: LogId.counter(),
     child: LogOutput.multi(children: [
       LogOutput.filtered(
         filter: LogFilter.release() & LogFilter.exactLevel(LogLevel.error),
@@ -50,7 +50,7 @@ void main() {
 
   // better approach for debug and release filter
   final log4 = Log(
-    id: LogId(),
+    id: LogId.counter(),
     child: LogOutput.multi(children: [
       LogOutput.redirectOnRelease(
         child: LogOutput.filtered(

@@ -28,8 +28,7 @@ represented using `LogLevel` enum) as well as some extra information like `id` (
 , `time` and `extra`. `extra` is a general field with type `Object` which is reserved for adding extra information to a
 log event.
 
-A `LogId` is needed for `Log` class to generate an id for each log event. You can use its standard
-implementation `LogId()` which is based on `uuid v1` uuid generation. there other types of LogId factories like
+A `LogId` is needed for `Log` class to generate an id for each log event. You can use LogId factories like
 `counter` which will simply count from a starting value, `constant` which will always generate the same given id
 and `custom` which you can provide your custom logic for id generation. You can check out on dart docs.
 
@@ -91,7 +90,7 @@ import 'package:harmony_log/harmony_log.dart';
 
 void main() {
   final log = Log(
-    id: LogId(),
+    id: LogId.counter(),
     child: LogOutput.redirectOnDebug(
       child: LogOutput.plain(
         format: LogPlainFormat.simple(),

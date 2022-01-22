@@ -1,15 +1,9 @@
-import 'package:harmony_log/src/id/impl/by.dart';
 import 'package:harmony_log/src/id/impl/constant.dart';
 import 'package:harmony_log/src/id/impl/counter.dart';
-import 'package:harmony_log/src/id/impl/standard.dart';
+import 'package:harmony_log/src/id/impl/custom.dart';
 
 /// harmony_log log event id generator
 abstract class LogId {
-  /// standard impl
-  ///
-  /// using uuid v1.
-  const factory LogId() = LogIdStandardImpl;
-
   /// constant impl
   ///
   /// always return a constant id.
@@ -28,7 +22,7 @@ abstract class LogId {
   /// by impl
   ///
   /// use provided lambda to generate id
-  const factory LogId.by(String Function() lambda) = LogIdByImpl;
+  const factory LogId.custom(String Function() lambda) = LogIdCustomImpl;
 
   /// generate an id
   String generate();
