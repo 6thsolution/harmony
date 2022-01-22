@@ -99,9 +99,19 @@ void main() {
       ),
     ),
   );
+  log5.init();
   log5.wtf('what a terrible failure');
+  log5.close();
+
+  final log6 = Log(
+    id: LogId.counter(),
+    child: LogOutput.developerLog(),
+  );
+  log6.init();
+  log6.i('what a great info');
+  log6.close();
 
   // don't forget:
-  log1.init();
-  log1.close();
+  // log1.init();
+  // log1.close();
 }

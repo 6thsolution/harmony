@@ -54,7 +54,8 @@ like `filtered` to filter events and redirect to other output, `multi` to output
 to redirect output to other output conditionally and `redirectOnDebug` to redirect output to other output only on debug.
 Some of them are terminal outputs like `noop` which does not do anything. And there is a special `custom` output which
 can be used to create custom outputs by providing functions for `init`, `write` and `close` operations. And a
-special `plain` factory which is used to output plain `String` data.
+special `plain` factory which is used to output plain `String` data. There is also `developerLog` log output which can
+be used to log to `dart:developer`.
 
 Filtering events is done by using special `filtered` LogOutput factory. You should provide and output for filtered
 events to go to and a `LogFilter` to filter events. `LogFilter`s are created using its factories, for example `level`
