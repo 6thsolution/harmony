@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:harmony_log/src/event/event.dart';
 import 'package:harmony_log/src/id/id.dart';
 import 'package:harmony_log/src/level/level.dart';
@@ -51,6 +53,7 @@ class LogStandardImpl implements Log {
       tag: tag,
       level: level,
       message: message,
+      zone: Zone.current,
       error: error,
       stackTrace: stackTrace,
       extra: extra,

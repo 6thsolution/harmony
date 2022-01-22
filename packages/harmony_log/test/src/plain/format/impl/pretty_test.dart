@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harmony_log/src/event/event.dart';
 import 'package:harmony_log/src/level/level.dart';
@@ -28,6 +30,7 @@ void main() {
             tag: 'TAG',
             level: LogLevel.wtf,
             message: 'message',
+            zone: Zone.current,
             error: 'error',
             stackTrace: StackTrace.empty,
             extra: 'extra',
@@ -58,6 +61,7 @@ void main() {
             time: time,
             level: LogLevel.wtf,
             message: 'message',
+            zone: Zone.current,
           );
           final format = formatter.format(event);
           expect(format, hasLength(5));

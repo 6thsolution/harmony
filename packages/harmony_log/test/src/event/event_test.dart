@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harmony_log/src/event/event.dart';
 import 'package:harmony_log/src/level/level.dart';
@@ -13,6 +15,7 @@ void main() {
         tag: 'tag',
         level: LogLevel.wtf,
         message: 'message',
+        zone: Zone.current,
         error: 'error',
         stackTrace: trace,
         extra: 'extra',

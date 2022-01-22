@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harmony_log/src/event/event.dart';
 import 'package:harmony_log/src/level/level.dart';
@@ -29,6 +31,7 @@ void main() {
             time: time,
             level: LogLevel.debug,
             message: 'messaging',
+            zone: Zone.current,
           );
           final list = format.format(event);
           expect(list, hasLength(1));
@@ -46,6 +49,7 @@ void main() {
             time: time,
             level: LogLevel.debug,
             message: 'messaging',
+            zone: Zone.current,
           );
           final list = format.format(event);
           expect(list, hasLength(1));
@@ -66,6 +70,7 @@ void main() {
             level: LogLevel.debug,
             message: 'messaging',
             tag: 'TAG',
+            zone: Zone.current,
           );
           final list = format.format(event);
           expect(list, hasLength(1));
@@ -87,6 +92,7 @@ void main() {
             level: LogLevel.debug,
             message: 'messaging',
             error: error,
+            zone: Zone.current,
           );
           final list = format.format(event);
           expect(list, hasLength(1));
@@ -108,6 +114,7 @@ void main() {
             level: LogLevel.debug,
             message: 'messaging',
             tag: 'TAG',
+            zone: Zone.current,
             error: error,
             extra: 'EXTRA',
             stackTrace: StackTrace.empty,
