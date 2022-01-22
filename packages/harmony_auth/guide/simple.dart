@@ -33,8 +33,8 @@ Future<void> init() async {
 
 /// build a logger ...
 Log _buildLog() => Log(
-      id: LogId(),
-      output: LogOutput.redirectOnDebug(
+      id: LogId.counter(),
+      child: LogOutput.redirectOnDebug(
         child: LogOutput.plain(
           format: LogPlainFormat.simple(),
           child: LogPlainOutput.console(),
