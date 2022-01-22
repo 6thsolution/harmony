@@ -28,7 +28,7 @@ void main() {
           expect(
               format.first,
               equals(
-                '{"id":"id","time":"${time.toIso8601String()}",'
+                '{"id":1000,"time":"${time.toIso8601String()}",'
                 '"tag":"tag","level":"warning","message":"message",'
                 '"error":"error","stackTrace":"","extra":"extra"},',
               ));
@@ -49,7 +49,7 @@ void main() {
           expect(
               format.first,
               equals(
-                '{"id":"id","time":"${time.toIso8601String()}",'
+                '{"id":1000,"time":"${time.toIso8601String()}",'
                 '"tag":null,"level":"warning","message":"message",'
                 '"error":null,"stackTrace":null,"extra":null},',
               ));
