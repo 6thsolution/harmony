@@ -14,8 +14,8 @@ void main() {
         final id1 = logId.generate();
         final id2 = logId.generate();
 
-        expect(id1, equals('id-100'));
-        expect(id2, equals('id-101'));
+        expect(id1, equals(100));
+        expect(id2, equals(101));
       });
     });
   });

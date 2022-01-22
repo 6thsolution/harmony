@@ -6,6 +6,7 @@ import 'package:harmony_log/src/output/impl/multi.dart';
 import 'package:harmony_log/src/output/impl/noop.dart';
 import 'package:harmony_log/src/output/impl/plain.dart';
 import 'package:harmony_log/src/output/impl/redirect.dart';
+import 'package:harmony_log/src/output/impl/developer_log.dart';
 import 'package:harmony_log/src/output/impl/redirect_on_debug.dart';
 import 'package:harmony_log/src/output/impl/redirect_on_profile.dart';
 import 'package:harmony_log/src/output/impl/redirect_on_release.dart';
@@ -79,6 +80,11 @@ abstract class LogOutput {
     required LogPlainFormat format,
     required LogPlainOutput child,
   }) = LogOutputPlainImpl;
+
+  /// developerLog implementation
+  ///
+  /// using dart:developer log
+  const factory LogOutput.developerLog() = LogOutputDeveloperLogImpl;
 
   /// initialized output
   ///
