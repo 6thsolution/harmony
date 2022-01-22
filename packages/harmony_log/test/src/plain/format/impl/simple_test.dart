@@ -27,7 +27,7 @@ void main() {
           );
           final time = DateTime.now();
           final event = LogEvent(
-            id: 'id',
+            id: 1000,
             time: time,
             level: LogLevel.debug,
             message: 'messaging',
@@ -45,7 +45,7 @@ void main() {
           final format = LogPlainFormat.simple();
           final time = DateTime.now();
           final event = LogEvent(
-            id: 'id',
+            id: 1000,
             time: time,
             level: LogLevel.debug,
             message: 'messaging',
@@ -65,7 +65,7 @@ void main() {
           );
           final time = DateTime.now();
           final event = LogEvent(
-            id: 'id',
+            id: 1000,
             time: time,
             level: LogLevel.debug,
             message: 'messaging',
@@ -87,7 +87,7 @@ void main() {
           final time = DateTime.now();
           final error = AssertionError();
           final event = LogEvent(
-            id: 'id',
+            id: 1000,
             time: time,
             level: LogLevel.debug,
             message: 'messaging',
@@ -109,7 +109,7 @@ void main() {
           final time = DateTime.now();
           final error = AssertionError();
           final event = LogEvent(
-            id: 'id',
+            id: 1000,
             time: time,
             level: LogLevel.debug,
             message: 'messaging',

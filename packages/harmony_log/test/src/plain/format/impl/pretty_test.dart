@@ -25,7 +25,7 @@ void main() {
           final formatter = LogPlainFormat.pretty(prefix: 'PRE-');
           final time = DateTime.now();
           final event = LogEvent(
-            id: 'id',
+            id: 1000,
             time: time,
             tag: 'TAG',
             level: LogLevel.wtf,
@@ -57,7 +57,7 @@ void main() {
           final formatter = LogPlainFormat.pretty(prefix: 'PRE-');
           final time = DateTime.now();
           final event = LogEvent(
-            id: 'id',
+            id: 1000,
             time: time,
             level: LogLevel.wtf,
             message: 'message',

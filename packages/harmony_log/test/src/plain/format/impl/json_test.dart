@@ -13,7 +13,7 @@ void main() {
           final formatter = LogPlainFormat.json();
           final time = DateTime.now();
           final event = LogEvent(
-            id: 'id',
+            id: 1000,
             time: time,
             tag: 'tag',
             level: LogLevel.warning,
@@ -38,7 +38,7 @@ void main() {
           final formatter = LogPlainFormat.json();
           final time = DateTime.now();
           final event = LogEvent(
-            id: 'id',
+            id: 1000,
             time: time,
             level: LogLevel.warning,
             message: 'message',

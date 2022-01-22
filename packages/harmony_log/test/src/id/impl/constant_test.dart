@@ -7,15 +7,15 @@ void main() {
       late LogId logId;
 
       setUp(() {
-        logId = LogId.constant('hello');
+        logId = LogId.constant(500);
       });
 
       test('generate', () {
         final id1 = logId.generate();
         final id2 = logId.generate();
 
-        expect(id1, equals('hello'));
-        expect(id2, equals('hello'));
+        expect(id1, equals(500));
+        expect(id2, equals(500));
       });
     });
   });

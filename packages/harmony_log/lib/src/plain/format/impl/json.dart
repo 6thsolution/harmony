@@ -35,6 +35,6 @@ class LogPlainFormatJsonImpl implements LogPlainFormat {
         'message': event.message,
         'error': event.error?.toString(),
         'stackTrace': event.stackTrace?.toString(),
-        'extra': event.extra?.toString(),
+        'extra': event.extra,
       });
 }

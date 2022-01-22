@@ -4,7 +4,7 @@ import 'package:harmony_log/src/level/level.dart';
 
 /// harmony_log log event
 class LogEvent {
-  final String id;
+  final int id;
   final DateTime time;
   final String? tag;
   final LogLevel level;

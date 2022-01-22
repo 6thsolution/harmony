@@ -22,7 +22,7 @@ void main() {
           output = MockLogOutput();
           log = Log(
             tag: 'TAG',
-            id: LogId.constant('hello'),
+            id: LogId.constant(500),
             child: output,
           );
         });
@@ -67,7 +67,7 @@ void main() {
                 that: predicate(
                   (LogEvent e) =>
                       e.tag == 'TAG' &&
-                      e.id == 'hello' &&
+                      e.id == 500 &&
                       e.stackTrace == trace &&
                       e.extra == 'extra' &&
                       e.error == 'error' &&
@@ -95,7 +95,7 @@ void main() {
                   that: predicate(
                     (LogEvent e) =>
                         e.tag == 'OTHER' &&
-                        e.id == 'hello' &&
+                        e.id == 500 &&
                         e.stackTrace == trace &&
                         e.extra == 'extra' &&
                         e.error == 'error' &&
@@ -118,7 +118,7 @@ void main() {
           output = MockLogOutput();
           log = Log(
             tag: null,
-            id: LogId.constant('hello'),
+            id: LogId.constant(500),
             child: output,
           );
         });
@@ -147,7 +147,7 @@ void main() {
                 that: predicate(
                   (LogEvent e) =>
                       e.tag == null &&
-                      e.id == 'hello' &&
+                      e.id == 500 &&
                       e.stackTrace == trace &&
                       e.extra == 'extra' &&
                       e.error == 'error' &&

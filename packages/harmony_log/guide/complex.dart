@@ -41,7 +41,7 @@ void main() {
 
   // noop logger
   final log3 = Log(
-    id: LogId.constant('ID'),
+    id: LogId.constant(1000),
     child: LogOutput.noop(),
   );
   log3.init();

@@ -9,12 +9,12 @@ abstract class LogId {
   /// always return a constant id.
   ///
   /// this is useful when an id is not needed.
-  const factory LogId.constant(String id) = LogIdConstantImpl;
+  const factory LogId.constant(int id) = LogIdConstantImpl;
 
   /// counter impl
   ///
   /// using an internal counter which increments on generate,
-  /// return "id-$counter".
+  /// return "counter".
   factory LogId.counter({
     int start,
   }) = LogIdCounterImpl;
@@ -22,8 +22,8 @@ abstract class LogId {
   /// by impl
   ///
   /// use provided lambda to generate id
-  const factory LogId.custom(String Function() lambda) = LogIdCustomImpl;
+  const factory LogId.custom(int Function() lambda) = LogIdCustomImpl;
 
   /// generate an id
-  String generate();
+  int generate();
 }

@@ -10,7 +10,7 @@ void main() {
       final time = DateTime.now();
       final trace = StackTrace.empty;
       final event = LogEvent(
-        id: 'id',
+        id: 1000,
         time: time,
         tag: 'tag',
         level: LogLevel.wtf,
@@ -20,7 +20,7 @@ void main() {
         stackTrace: trace,
         extra: 'extra',
       );
-      expect(event.id, equals('id'));
+      expect(event.id, equals(1000));
       expect(event.time, equals(time));
       expect(event.tag, equals('tag'));
       expect(event.level, equals(LogLevel.wtf));

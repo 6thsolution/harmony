@@ -8,5 +8,5 @@ class LogIdCounterImpl implements LogId {
   }) : id = start;
 
   @override
-  String generate() => 'id-${id++}';
+  int generate() => id++;
 }

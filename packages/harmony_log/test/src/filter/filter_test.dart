@@ -14,7 +14,7 @@ void main() {
       final filter = LogFilter.custom((e) => e.message == 'a');
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.wtf,
@@ -28,7 +28,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.wtf,
@@ -46,7 +46,7 @@ void main() {
       final filter = LogFilter.level(LogLevel.warning);
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.wtf,
@@ -60,7 +60,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -74,7 +74,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.verbose,
@@ -92,7 +92,7 @@ void main() {
       final filter = LogFilter.exactLevel(LogLevel.warning);
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.wtf,
@@ -106,7 +106,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -120,7 +120,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.verbose,
@@ -138,7 +138,7 @@ void main() {
       final filter = LogFilter.tag('tag');
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -152,7 +152,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'other tag',
           level: LogLevel.warning,
@@ -170,7 +170,7 @@ void main() {
       final filter = LogFilter.extra('extra');
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -184,7 +184,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -202,7 +202,7 @@ void main() {
       final filter = LogFilter.byTag((t) => t == 'tag');
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -216,7 +216,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'other tag',
           level: LogLevel.warning,
@@ -234,7 +234,7 @@ void main() {
       final filter = LogFilter.byMessage((m) => m == 'message');
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -248,7 +248,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -266,7 +266,7 @@ void main() {
       final filter = LogFilter.byError((e) => e == 'error');
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -280,7 +280,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -298,7 +298,7 @@ void main() {
       final filter = LogFilter.byExtra((e) => e == 'extra');
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -312,7 +312,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -330,7 +330,7 @@ void main() {
       final filter = LogFilter.byLevel((l) => l == LogLevel.warning);
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.warning,
@@ -344,7 +344,7 @@ void main() {
       );
       expect(
         filter.shouldLog(LogEvent(
-          id: 'id',
+          id: 1000,
           time: DateTime.now(),
           tag: 'tag',
           level: LogLevel.error,
@@ -401,7 +401,7 @@ void main() {
             (e) => e.tag == tag,
           );
       LogEvent event(String message, String tag) => LogEvent(
-            id: 'id',
+            id: 1000,
             time: DateTime.now(),
             tag: tag,
             level: LogLevel.wtf,

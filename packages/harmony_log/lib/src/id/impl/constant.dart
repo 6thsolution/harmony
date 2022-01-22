@@ -1,10 +1,10 @@
 import 'package:harmony_log/src/id/id.dart';
 
 class LogIdConstantImpl implements LogId {
-  final String id;
+  final int id;
 
   const LogIdConstantImpl(this.id);
 
   @override
-  String generate() => id;
+  int generate() => id;
 }
