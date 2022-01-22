@@ -1,6 +1,7 @@
 import 'package:harmony_log/src/event/event.dart';
 import 'package:harmony_log/src/id/id.dart';
 import 'package:harmony_log/src/level/level.dart';
+import 'package:harmony_log/src/log/impl/noop.dart';
 import 'package:harmony_log/src/log/impl/standard.dart';
 import 'package:harmony_log/src/output/output.dart';
 
@@ -22,6 +23,11 @@ abstract class Log implements LogOutput {
     required LogId id,
     required LogOutput child,
   }) = LogStandardImpl;
+
+  /// noop implementation
+  const factory Log.noop({
+    String? tag,
+  }) = LogNoopImpl;
 
   /// tagged logger
   ///
