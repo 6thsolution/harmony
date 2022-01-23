@@ -1,5 +1,6 @@
 import 'package:harmony_log/src/plain/output/impl/console.dart';
 import 'package:harmony_log/src/plain/output/impl/custom.dart';
+import 'package:harmony_log/src/plain/output/impl/developer_log.dart';
 import 'package:harmony_log/src/plain/output/impl/file_fake.dart'
     if (dart.library.io) 'package:harmony_log/src/plain/output/impl/file.dart';
 import 'package:harmony_log/src/plain/output/impl/multi.dart';
@@ -11,6 +12,11 @@ abstract class LogPlainOutput {
   ///
   /// console using `print`
   const factory LogPlainOutput.console() = LogPlainOutputConsoleImpl;
+
+  /// console implementation
+  ///
+  /// log using `dart:developer`
+  const factory LogPlainOutput.developerLog() = LogPlainOutputDeveloperLogImpl;
 
   /// custom implementation
   ///
