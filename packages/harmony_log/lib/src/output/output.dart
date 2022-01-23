@@ -30,6 +30,8 @@ abstract class LogOutput {
   /// redirect implementation
   ///
   /// redirect conditionally
+  ///
+  /// enabled by default
   const factory LogOutput.redirect({
     bool enabled,
     required LogOutput child,

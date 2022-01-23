@@ -1,5 +1,10 @@
 ## 2.0.1
 
+- Added `debugPrint` plain logger using `LogPlainOutput.debugPrint()`.
+- Added `reqirect` log implementation using `Log.redirect()`.
+
+## 2.0.1
+
 - Added `dart:developer` plain logger using `LogPlainOutput.developerLog()`.
 
 ## 2.0.0
